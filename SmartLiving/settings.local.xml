@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+	<interactiveMode>true</interactiveMode>
+	<profiles>
+	    <profile>
+            <id>database-oracle</id>
+            <activation>
+      			<activeByDefault>false</activeByDefault>
+    		</activation>                     
+            <properties>
+                <jdbc.host>dubn60224923a</jdbc.host>
+                <jdbc.url>jdbc:oracle:thin:@localhost:1521:orcl</jdbc.url>
+                <jdbc.driver.name>oracle.jdbc.driver.OracleDriver</jdbc.driver.name>
+                <jdbc.username>SYSTEM</jdbc.username>
+                <jdbc.password>cisdba</jdbc.password>
+                <jdbc.schema>orcl</jdbc.schema>
+                <jdbc.port>1521</jdbc.port>                
+            </properties>           
+        </profile>         
+         <profile>
+            <id>database-hana</id>
+            <activation>
+      			<activeByDefault>false</activeByDefault>
+    		</activation>                     
+            <properties>
+                <jdbc.host>dubl60244901a.dhcp.dub.sap.corp</jdbc.host>
+                <jdbc.port>30015</jdbc.port>
+                <jdbc.url>jdbc:sap://${jdbc.host}:${jdbc.port}</jdbc.url>
+                <jdbc.driver.name>com.sap.db.jdbc.Driver</jdbc.driver.name>
+                <jdbc.username>SYSTEM</jdbc.username>
+                <jdbc.password>Manager00</jdbc.password>
+                <jdbc.schema>XDB</jdbc.schema>                                
+            </properties>
+        </profile>                                 
+    </profiles>
+</settings>

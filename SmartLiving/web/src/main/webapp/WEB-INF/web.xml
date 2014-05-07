@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>SmartLiving</display-name>
+	<servlet>
+		<servlet-name>CXFServlet</servlet-name>
+		<servlet-class>	org.apache.cxf.jaxrs.servlet.CXFNonSpringJaxrsServlet</servlet-class>
+		<init-param>
+			<param-name>jaxrs.serviceClasses</param-name>
+			<param-value>com.sl.rest.CategoryService </param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CXFServlet</servlet-name>
+		<url-pattern>/rest/*</url-pattern>
+	</servlet-mapping> 
+
+	<!-- <login-config>
+		<auth-method>FORM</auth-method>
+		<realm-name>loginConfig</realm-name>
+		<form-login-config>
+			<form-login-page>/login/login.jsp?success=true</form-login-page>
+			<form-error-page>/login/error.jsp?success=false</form-error-page>
+		</form-login-config>
+	</login-config>
+
+	<security-role>
+		<role-name>*</role-name>
+	</security-role>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>ProtectedResources</web-resource-name>
+			<url-pattern>/*</url-pattern>
+			<http-method>POST</http-method>
+			<http-method>GET</http-method>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>*</role-name>
+		</auth-constraint>
+	</security-constraint> -->
+	
+	<resource-ref>
+	 <description>HANA Datasource</description>
+	 <res-ref-name>jdbc/HanaDB</res-ref-name>
+	 <res-type>javax.sql.DataSource</res-type>
+	 <res-auth>Container</res-auth>
+	</resource-ref>
+	
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+</web-app>
+
+
+
+
