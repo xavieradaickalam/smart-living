@@ -1,0 +1,19 @@
+table.schemaName = "${dbl.schema}";
+table.tableType = COLUMNSTORE;
+table.columns = [
+    {name = "ID"; sqlType = NVARCHAR;  nullable = false; length = 32;},
+    {name = "NAME"; sqlType = NVARCHAR;  nullable = false; length = 100;},
+    {name = "PRODUCT"; sqlType = NVARCHAR; nullable = false; length = 100;},
+    {name = "PRICE"; sqlType = NVARCHAR; nullable = false; length = 100;},
+    {name = "DISCOUNT"; sqlType = NVARCHAR; nullable = false; length = 100;},
+    {name = "DISCOUNT_PRICE"; sqlType = NVARCHAR; nullable = false; length = 100;},
+    {name = "START_DATE"; sqlType = DATE; nullable = false;},
+    {name = "END_DATE"; sqlType = DATE; nullable = false;},
+    {name = "SENTIMENT"; sqlType = NVARCHAR; nullable = true; length = 100;},
+    {name = "ACTIVITY"; sqlType = NVARCHAR; nullable = true; length = 100;},
+    {name = "SOCIAL_ENGAGEMENT_SCORE"; sqlType = NVARCHAR; nullable = false; length = 100;},
+    {name = "POI"; sqlType = NVARCHAR; nullable = false; length = 1000;},
+    {name = "OFFER_SHORT_TEXT"; sqlType = NVARCHAR; nullable = false; length = 1000;},
+    {name = "OFFER_TEMPLATE"; sqlType = NVARCHAR; nullable = false; length = 5000;}
+];
+table.primaryKey.pkcolumns = ["ID","NAME"];

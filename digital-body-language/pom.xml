@@ -1,0 +1,135 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.sap.hs.dbl</groupId>
+    <artifactId>dbl-parent</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>digital-body-language :: parent</name>
+    <url></url>
+    <description>Digital Body Language</description>
+
+    <parent>
+        <groupId>com.sap.ldi</groupId>
+        <artifactId>ldi-tycho-parent</artifactId>
+        <version>6.5.0</version>
+    </parent>
+
+    <modules>
+        <module>core</module>
+        <!-- <module>dbl-poc</module> -->
+    </modules>
+	
+	<distributionManagement>
+		<snapshotRepository>
+			<id>nexus-milestones</id>
+			<name>Dublin Nexus Milestones</name>
+			<url>http://dubd60214859a.dhcp.dub.sap.corp:8081/nexus/content/repositories/deploy.milestones/</url>
+		</snapshotRepository>
+	</distributionManagement>	
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <junit.version>4.8.1</junit.version>        
+        <skipTests>false</skipTests>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.8</version>
+                </plugin>
+
+                <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.0</version>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-report-plugin</artifactId>
+                    <version>2.6</version>
+                    <executions>
+                        <execution>
+                            <phase>test</phase>
+                            <goals>
+                                <goal>report-only</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>2.9</version>
+
+                    <executions>
+                        <execution>
+                            <id>perform-it</id>
+                            <goals>
+                                <goal>integration-test</goal>
+                            </goals>
+                            <configuration>
+                                <systemProperties>
+                                    <property>
+                                        <name>servlet.port</name>
+                                        <value>${servlet.port}</value>
+                                    </property>
+                                    <property>
+                                        <name>skipTests</name>
+                                        <value>${skipTests}</value>
+                                    </property>
+                                </systemProperties>
+                            </configuration>
+                        </execution>
+                        <execution>
+                            <id>verify-it</id>
+                            <goals>
+                                <goal>verify</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>2.4.1</version>
+                    <configuration>
+                        <filesets>
+                            <fileset>
+                                <directory>${basedir}</directory>
+                                <includes>
+                                    <include>**/*.tmp</include>
+                                    <include>**/*.log</include>
+                                </includes>
+                            </fileset>
+                        </filesets>
+                    </configuration>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+    </build>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+                <version>2.11</version>
+            </plugin>
+        </plugins>
+    </reporting>
+</project>

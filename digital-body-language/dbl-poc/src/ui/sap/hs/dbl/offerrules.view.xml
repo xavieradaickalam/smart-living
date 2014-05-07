@@ -1,0 +1,37 @@
+<core:View controllerName="sap.hs.dbl.home"  
+  xmlns:core="sap.ui.core"
+  xmlns="sap.ui.commons" 
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:layout="sap.ui.commons.layout"
+  xmlns:table="sap.ui.table" 
+  xmlns:tableex="sap.epm.common.ui.controls.table">
+       
+ <layout:HorizontalLayout id="">
+    <layout:content>
+      <layout:VerticalLayout id="LINE_DETAILS">
+      <layout:content>
+      <layout:HorizontalLayout id="layout-1">
+        <layout:content>
+            <TextView id="Latitude_LBL" text="Latitude : "/>
+            <TextView id="Latitude_VAL"/>
+        </layout:content>
+     </layout:HorizontalLayout>
+     
+      <layout:HorizontalLayout id="layout-2">
+        <layout:content>
+            <TextView id="Longitude_LBL" text="Longitude : "/>
+            <TextView id="Longitude_VAL"/>
+        </layout:content>
+     </layout:HorizontalLayout> 
+     
+     <layout:HorizontalLayout id="layout-3">
+        <layout:content>
+            <TextView id="Address_LBL" text="Address : "/>
+            <TextView id="Address_VAL"/>
+        </layout:content>
+     </layout:HorizontalLayout>
+     </layout:content>
+     </layout:VerticalLayout>
+   </layout:content>   
+ </layout:HorizontalLayout> 
+ </core:View>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<core:View resourceBundleName="localization.dbl" resourceBundleAlias="i18n" controllerName="sap.hs.dbl.Promotions" xmlns="sap.ui.commons" xmlns:core="sap.ui.core" xmlns:layout="sap.ui.commons.layout">
+  <layout:VerticalLayout id="MAINPAGE_LAYOUT" class="main-container">
+     <TextView id="PRODUCT_IMGBGD" class="prodimg"/>
+   <!--  <Image id="PRODUCT_IMG" class="main-prodimage" /> -->
+    <layout:HorizontalLayout class="main-title-container">
+      <Label id="PRODUCT_LBL" text="Promotion for:" class="main-title" />
+      <TextView id="PRODUCT_TXT" class="main-title productname" />
+    </layout:HorizontalLayout>
+    <layout:HorizontalLayout class="price-container">
+      <Label id="PRICE_LBL" text="Price:" class="label-bold" />
+      <TextView id="PRICE_TXT" class="small-space-left label-regular" />
+    </layout:HorizontalLayout>
+    <layout:HorizontalLayout class="discount-container">
+      <Label id="DISCOUNT_LBL" text="Discount:" class="label-bold mt4" />
+      <Button id="MINUS_BTN" text="-" class="small-space-left button-incrdecr button-dark-style" />
+      <TextField id="DISCOUNT_TXT" value="0%" class="discount-input" />
+      <Button id="PLUS_BTN" text="+" class="button-incrdecr button-dark-style" />
+    </layout:HorizontalLayout>
+    <layout:HorizontalLayout class="promotional-container">
+      <Label id="PROMOTION_PRICE_LBL" text="Promotion Price" class="label-bold" />
+      <TextView id="PROMOTION_PRICE_TXT" class="promotional-text" />
+    </layout:HorizontalLayout>
+    <layout:HorizontalLayout class="spacer-container"></layout:HorizontalLayout>
+    <layout:HorizontalLayout class="date-container">
+      <Label id="STARTDATE_LBL" text="Start Date:" class="label-bold mt7" />
+      <DatePicker id="START_DATE" class=" small-space-left button-dark-style datepicker" />
+      <Label id="ENDDATE_LBL" text="End Date:" class="ml40 label-bold mt7" />
+      <DatePicker id="END_DATE" class=" small-space-left button-dark-style datepicker" />
+    </layout:HorizontalLayout>
+    <TextArea id="PROMOTION_TXT" class="wished-textarea"/>
+    <layout:HorizontalLayout class="mb15 segmentlocation-container">
+      <layout:VerticalLayout class="segment-container">
+        <Label text="Customer Segment:" class="label-bold mb15" />
+        <TextView id="CUSTOMERSEG_TXT" class="label-regular" text="Promote this product to the users who:" />
+        <DropdownBox id="WISHLIST_DD" class="tp-dd fr" />
+        <layout:HorizontalLayout>
+          <Label text="and" class="label-regular mt12" />
+          <DropdownBox id="SOCIAL_ENGAGEMENT_DD" class="small-space-left tp-dd" />
+        </layout:HorizontalLayout>
+      </layout:VerticalLayout>
+      <layout:VerticalLayout class="location-container">
+        <Label text="Location:" class="label-bold mb15" />
+        <TextView id="LOCATION_TXT" class="label-regular" text="Notify users about promotion when they are:" />
+        <DropdownBox id="LOC_DISTANCE_DD" class="tp-dd  fr" />
+        <layout:HorizontalLayout>
+          <Label text="from" class="label-regular mt12" />
+          <DropdownBox id="LOCATION_DD" class="tp-dd  small-space-left" />  
+        </layout:HorizontalLayout>
+      </layout:VerticalLayout>
+    </layout:HorizontalLayout>
+    <layout:HorizontalLayout class="button-container">
+      <Button id="CREATE_BTN" text="Create" class="small-space-left active-button fr" />
+      <Button id="CANCEL_BTN" text="Cancel" class="inactive-button fr" />
+    </layout:HorizontalLayout>
+  </layout:VerticalLayout>
+</core:View>

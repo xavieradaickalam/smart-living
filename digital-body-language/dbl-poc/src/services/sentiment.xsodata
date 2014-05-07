@@ -1,0 +1,3 @@
+service namespace "dbl.sentiment" {
+    //"_SYS_BIC"."dbl.db.tables/AT_TWITTER_FEED" as "Sentiment";
+ }

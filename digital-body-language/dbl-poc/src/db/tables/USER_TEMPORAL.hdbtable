@@ -1,0 +1,10 @@
+table.schemaName = "${dbl.schema}";
+table.tableType = COLUMNSTORE;
+table.columns = [
+    {name = "ID"; sqlType = NVARCHAR;  nullable = false; length = 32;},
+    {name = "USERNAME"; sqlType = NVARCHAR;  nullable = false;length = 64;},
+    {name = "CATEGORY"; sqlType = NVARCHAR; nullable = false;length = 64;},
+    {name = "EVENT_TIME"; sqlType = TIMESTAMP; nullable = false;},
+    {name = "EVENT"; sqlType = NVARCHAR; nullable = false;length = 100;},
+    {name = "DATA"; sqlType = NVARCHAR; nullable = false;length = 100;}
+];

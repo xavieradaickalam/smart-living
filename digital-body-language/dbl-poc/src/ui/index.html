@@ -1,0 +1,136 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=8" />
+<title>DBLA Sample App</title>
+<script id="sap-ui-bootstrap" type="text/javascript"
+    src="/sap/ui5/1/resources/sap-ui-core.js"
+    data-sap-ui-libs="sap.ui.commons,sap.ui.table,sap.ui.ux3"
+    data-sap-ui-theme="sap_goldreflection">
+</script>
+<script type="test/javasript" src="/sap/ui5/1/resources/jquery-sap.js"></script>
+</head>
+<body class="sapUiBody">
+    <div id="ShellArea"></div>
+    <script type="text/javascript">
+    ( function () {
+        jQuery.sap.require("sap.ui.ux3.library");
+       oUserText =  new sap.ui.commons.TextView({text:"User Name",tooltip:"User Name"})
+        var oShell = new sap.ui.ux3.Shell({
+            width:"100%",
+            height:"100%",
+//          headerType: sap.ui.ux3.ShellHeaderType.Standard,
+            appTitle       : "Digital Body Language Analysis",
+            appIcon        : "images/SAPLogo.gif",
+            appIconTooltip : "SAP logo",
+            headerItems: [oUserText, new sap.ui.commons.Button({text:"Settings",tooltip:"Settings"})],
+            showSearchTool : false,
+            showInspectorTool : false,
+            showFeederTool : false,
+            showTools : false,
+            showPane  : false,
+            worksetItems   :[
+                            new sap.ui.ux3.NavigationItem({key:"dbl_home", text:"Home"}),
+                            //new sap.ui.ux3.NavigationItem({key:"dbl_user_profile", text:"User Profile"}), 
+                            //new sap.ui.ux3.NavigationItem({key:"dbl_user_twittercontent", text:"Twitter Content"}), 
+                            //new sap.ui.ux3.NavigationItem({key:"dbl_user_sentiment", text:"Twitter Sentiment"}),
+                            new sap.ui.ux3.NavigationItem({key:"dbl_offer_rules", text:"Marketing Manager Console"}),
+                            ],
+            paneBarItems:[  // add also one item to the right-side PaneBar
+                new sap.ui.core.Item({key:"simplexs_rigtpane1", text:"RightPane"})
+            ],
+            logout: function() {
+            sendLogout(
+                    function() { addMessage(0, "User logged out"); });
+            }
+        });
+        var mContent = {}; // a map to remember page content once it is created
+        function getContent(key) {
+            if (mContent[key]) return mContent[key]; // if content is already created, return it directly
+            if (key == "dbl_home") {
+                mContent[key] = createHomeView();
+            /**} else if (key == "dbl_user_profile") {
+                mContent[key] = createUserProfileView();                
+            } else if (key == "dbl_user_twittercontent") {
+                mContent[key] = createTwitterContent();             
+            } else if (key == "dbl_user_sentiment") {
+                mContent[key] = new sap.ui.core.HTML("dbl_home",{content : "<iframe id=\"content\" name=\"content\" src=\"html/search.html?embedded=true\" width=\"100\%\" height=\"1000px\" frameborder=\"0\"></iframe>"});
+              */  
+            } else if (key == "dbl_offer_rules") {
+                mContent[key] =  createOfferRulesContent(); 
+            } else {
+                mContent[key] = null;
+            }
+            return mContent[key];
+        }
+        // when the user selects a workset, put the respective content into the shell's main area
+        oShell.attachWorksetItemSelected(function(oEvent) {
+            oShell.setContent(getContent(oEvent.getParameter("key")));
+        });
+        // set the initial content of the Shell - the Home is selected initially
+        oShell.setContent(getContent("dbl_home"));
+        // place the Shell into the <div> element defined below
+        oShell.placeAt("ShellArea");        
+        // call init to get user settings
+        init();        
+    } ) ();
+    
+    
+    function sendLogout(responseFunction) {
+        var send = function() {
+            $.ajax({
+               url: "/sap/hana/xs/formLogin/logout.xscfunc",
+               type: "POST",
+               dataType: "json",
+               beforeSend: function(xhr) {
+                    xhr.setRequestHeader("X-CSRF-Token", CSRFToken);
+               },
+               success: responseFunction
+           });      
+        };
+        getCSRFToken(send);
+    }
+      
+    function getCSRFToken(callback) {
+        $.ajax({
+            url: "/sap/hana/xs/formLogin/token.xsjs",
+            type: "GET",
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader("X-CSRF-Token", "Fetch");
+            },
+            success: function(data, textStatus, XMLHttpRequest) {
+                CSRFToken = XMLHttpRequest.getResponseHeader('X-CSRF-Token');
+                callback();
+            }
+        });
+    }
+   function init() {
+       oUserText.setText("SYSTEM");
+   }
+   
+   function  createHomeView() {
+     sap.ui.localResources("sap.hs.dbl");
+     var view = sap.ui.view({id:"homeview", viewName:"sap.hs.dbl.home", type:sap.ui.core.mvc.ViewType.XML});
+     return view;
+   }
+   
+   function  createUserProfileView() {
+     sap.ui.localResources("sap.hs.dbl");
+     var view = sap.ui.view({id:"userprofileview", viewName:"sap.hs.dbl.userprofile", type:sap.ui.core.mvc.ViewType.JS});
+     return view;
+   }
+   
+   function  createTwitterContent() {
+       sap.ui.localResources("sap.hs.dbl");
+       var view = sap.ui.view({id:"twittercontent", viewName:"sap.hs.dbl.twitter", type:sap.ui.core.mvc.ViewType.JS});
+       return view;
+    }
+    function createOfferRulesContent() {
+        sap.ui.localResources("sap.hs.dbl");
+        var view = sap.ui.view({id:"offerrules", viewName:"sap.hs.dbl.offerrules", type:sap.ui.core.mvc.ViewType.JS});
+        return view;
+    }    
+  </script>
+</body>
+</html>

@@ -1,0 +1,2 @@
+implements ${regi.rootPackage}.db.tables:PRODUCT.hdbtim;
+csvFiles = ["${regi.rootPackage}.db.tables:PRODUCT.csv"];

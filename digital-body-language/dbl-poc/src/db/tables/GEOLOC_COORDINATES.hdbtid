@@ -1,0 +1,2 @@
+implements ${regi.rootPackage}.db.tables:GEOLOC_COORDINATES.hdbtim;
+csvFiles = ["${regi.rootPackage}.db.tables:GEOLOC_COORDINATES.csv"];

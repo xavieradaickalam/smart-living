@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<properties>
+	<AddChild/>
+	<Edit/>
+	<Files/>
+	<LastModifyingUser>admin</LastModifyingUser>
+	<Properties/>
+	<Prune/>
+	<RecentChanges/>
+	<Search/>
+	<Static/>
+	<Versions/>
+	<WhereUsed/>
+	<WikiImport>
+		<Source>http://localhost:8085/FrontPage</Source>
+		<IsRoot/>
+		<AutoUpdate/>
+	</WikiImport>
+	<secure-write/>
+</properties>

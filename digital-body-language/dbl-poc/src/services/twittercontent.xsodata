@@ -1,0 +1,3 @@
+service namespace "dbl.services" {
+    //"HS_DBL_NEW"."dbl.db.tables::TWITTER_FEED" as "TwitterData";
+ }

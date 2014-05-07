@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd" >
+<log4j:configuration debug="false" threshold="debug">
+
+	<appender name="tdma-test" class="org.apache.log4j.RollingFileAppender">
+		<param name="maxFileSize" value="10MB" />
+		<param name="maxBackupIndex" value="10" />
+		<param name="File" value="logs/trace.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p [%t] %c - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="console-test" class="org.apache.log4j.ConsoleAppender">
+		<param name="ImmediateFlush" value="true" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p [%t] %c - %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="com.sap.dfla" additivity="false">
+		<level value="info" />
+		<appender-ref ref="tdma-test" />
+		<appender-ref ref="console-test" />
+	</logger>
+
+
+	<logger name="org.apache.cxf" additivity="false">
+		<level value="info" />
+		<appender-ref ref="tdma-test" />
+		<appender-ref ref="console-test" />
+	</logger>
+
+	<logger name="org.apache.http" additivity="false">
+		<level value="info" />
+		<appender-ref ref="tdma-test" />
+		<appender-ref ref="console-test" />
+	</logger>
+
+	<root>
+		<priority value="info" />
+		<appender-ref ref="tdma-test" />
+		<appender-ref ref="console-test" />
+	</root>
+
+</log4j:configuration>

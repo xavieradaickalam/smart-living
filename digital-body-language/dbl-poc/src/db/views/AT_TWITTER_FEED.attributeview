@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dimension:dimension xmlns:Dimension="http://www.sap.com/ndb/BiModelDimension.ecore" schemaVersion="1.2" id="AT_TWITTER_FEED" defaultClient="$$client$$" defaultLanguage="$$language$$" visibility="internal" dimensionType="Standard">
+  <origin/>
+  <descriptions defaultDescription="AT_TWITTER_FEED"/>
+  <metadata activatedAt="2013-03-08 14:15:54.0" changedAt="2013-03-08 14:15:50.731" createdAt="2013-03-08 13:56:58.084"/>
+  <attributes>
+    <attribute id="TA_RULE" key="true">
+      <descriptions defaultDescription="TA_RULE"/>
+      <keyMapping schemaName="HS_DBL_NEW" columnObjectName="$TA_TWIT_FEED" columnName="TA_RULE"/>
+    </attribute>
+    <attribute id="TA_COUNTER" key="true">
+      <descriptions defaultDescription="TA_COUNTER"/>
+      <keyMapping schemaName="HS_DBL_NEW" columnObjectName="$TA_TWIT_FEED" columnName="TA_COUNTER"/>
+    </attribute>
+    <attribute id="TA_TYPE">
+      <descriptions defaultDescription="TA_TYPE"/>
+      <keyMapping schemaName="HS_DBL_NEW" columnObjectName="$TA_TWIT_FEED" columnName="TA_TYPE"/>
+    </attribute>
+    <attribute id="TA_CREATED_AT">
+      <descriptions defaultDescription="TA_CREATED_AT"/>
+      <keyMapping schemaName="HS_DBL_NEW" columnObjectName="$TA_TWIT_FEED" columnName="TA_CREATED_AT"/>
+    </attribute>
+    <attribute id="TA_SENTENCE">
+      <descriptions defaultDescription="TA_SENTENCE"/>
+      <keyMapping schemaName="HS_DBL_NEW" columnObjectName="$TA_TWIT_FEED" columnName="TA_SENTENCE"/>
+    </attribute>
+    <attribute id="TOPIC">
+      <descriptions defaultDescription="TOPIC"/>
+      <keyMapping schemaName="HS_DBL_NEW" columnObjectName="dbl.db.tables::TWITTER_FEED" columnName="TOPIC"/>
+    </attribute>
+    <attribute id="TWITTED_TIMESTAMP">
+      <descriptions defaultDescription="TWITTED_TIMESTAMP"/>
+      <keyMapping schemaName="HS_DBL_NEW" columnObjectName="dbl.db.tables::TWITTER_FEED" columnName="TWITTED_TIMESTAMP"/>
+    </attribute>
+    <attribute id="TWITTED_BY">
+      <descriptions defaultDescription="TWITTED_BY"/>
+      <keyMapping schemaName="HS_DBL_NEW" columnObjectName="dbl.db.tables::TWITTER_FEED" columnName="TWITTED_BY"/>
+    </attribute>
+    <attribute id="SOURCE">
+      <descriptions defaultDescription="SOURCE"/>
+      <keyMapping schemaName="HS_DBL_NEW" columnObjectName="dbl.db.tables::TWITTER_FEED" columnName="SOURCE"/>
+    </attribute>
+    <attribute id="TEXT">
+      <descriptions defaultDescription="TEXT"/>
+      <keyMapping schemaName="HS_DBL_NEW" columnObjectName="dbl.db.tables::TWITTER_FEED" columnName="TEXT"/>
+    </attribute>
+    <attribute id="ID" key="true">
+      <descriptions defaultDescription="ID"/>
+      <keyMapping schemaName="HS_DBL_NEW" columnObjectName="$TA_TWIT_FEED" columnName="ID"/>
+    </attribute>
+  </attributes>
+  <calculatedAttributes>
+    <calculatedAttribute id="CONTENT_SOURCE" hidden="false">
+      <descriptions defaultDescription="CONTENT_SOURCE"/>
+      <keyCalculation datatype="VARCHAR" length="20" scale="0">
+        <formula>trim('TWITTER')</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+    <calculatedAttribute id="SENTIMENT" hidden="false">
+      <descriptions defaultDescription="SENTIMENT"/>
+      <keyCalculation datatype="VARCHAR" length="500" scale="0">
+        <formula>CASE(&quot;TA_TYPE&quot;,'WeakNegativeSentiment','WeakNagative','WeakPositiveSentiment','WeakPositive','StrongNegativeSentiment','StrongNegative','StrongPositiveSentiment','StrongPositive',&quot;NULL_VALUE&quot;)</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+    <calculatedAttribute id="NULL_VALUE" hidden="false">
+      <descriptions defaultDescription="NULL_VALUE"/>
+      <keyCalculation datatype="VARCHAR" length="10" scale="0">
+        <formula>NULL</formula>
+      </keyCalculation>
+    </calculatedAttribute>
+  </calculatedAttributes>
+  <privateDataFoundation>
+    <tableProxies>
+      <tableProxy>
+        <table schemaName="HS_DBL_NEW" columnObjectName="$TA_TWIT_FEED"/>
+      </tableProxy>
+      <tableProxy>
+        <table schemaName="HS_DBL_NEW" columnObjectName="dbl.db.tables::TWITTER_FEED"/>
+      </tableProxy>
+    </tableProxies>
+    <joins>
+      <join>
+        <leftTable schemaName="HS_DBL_NEW" columnObjectName="dbl.db.tables::TWITTER_FEED"/>
+        <rightTable schemaName="HS_DBL_NEW" columnObjectName="$TA_TWIT_FEED"/>
+        <leftColumns>
+          <columnName>ID</columnName>
+        </leftColumns>
+        <rightColumns>
+          <columnName>ID</columnName>
+        </rightColumns>
+        <properties cardinality="C1_N" joinOperator="Equal" joinType="referential"/>
+      </join>
+    </joins>
+    <layout>
+      <shapes>
+        <shape modelObjectName="$TA_TWIT_FEED" modelObjectNameSpace="HS_DBL_NEW" modelObjectType="catalog">
+          <upperLeftCorner x="70" y="30"/>
+        </shape>
+        <shape modelObjectName="dbl.db.tables::TWITTER_FEED" modelObjectNameSpace="HS_DBL_NEW" modelObjectType="catalog">
+          <upperLeftCorner x="385" y="30"/>
+        </shape>
+      </shapes>
+    </layout>
+  </privateDataFoundation>
+  <hierarchies/>
+</Dimension:dimension>

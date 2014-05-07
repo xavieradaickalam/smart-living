@@ -1,0 +1,20 @@
+!style_red['''Important!''']
+This is wiki page with environment variables. 
+
+!******* '''Environment''' Setup Variables
+# CI server
+!define SYSTEM_UNDER_TEST    (!-dubl60244901a.dhcp.dub.sap.corp-!) 
+!define HANA_INSTANCE_NUMBER (!-01-!) 
+!define HANA_USERNAME (!-SYSTEM-!) 
+!define HANA_PASSWORD (!-Manager01-!)
+!define TEST_SYSTEM {slim}
+!define root.results (/home/SAP_ALL/i057588/git/digital-body-language/msp-fitnesse)
+# Just for debug purpose
+#!define COMMAND_PATTERN {java -Xdebug -Xrunjdwp:transport=dt_socket,server=n,suspend=n,address=1044 -cp %p %m}
+********!
+
+!******* '''Fitnesse Path setup''' Path setup
+!path fitnesse-standalone.jar
+!path msp-fixtures-1.0-SNAPSHOT.jar
+!path lib/**.jar
+********!

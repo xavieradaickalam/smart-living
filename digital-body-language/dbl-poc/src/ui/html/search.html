@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>DBLA</title>
+
+<meta name="description" content="">
+<meta name="author" content="SAP AG">
+
+<!-- CSS: implied media="all" -->
+<!-- CSS concatenated and minified via ant build script-->
+<link rel="stylesheet" type="text/css" href="search.css">
+<!-- end CSS-->
+<!-- <link rel="shortcut icon" href="img/favicon.png" /> -->
+<!-- external libraries -->
+
+<script src="/sap/bc/ina/uitoolkit/lib/jquery.js"></script>
+</head>
+<body>
+
+    <div class="background">
+        <div data-sap-widget="alert"></div>
+        <div data-sap-widget="workarea" data-title="searchandanalytics"
+            data-packagename="dbl.db.tables" data-entityset="AT_TWITTER_FEED"
+            data-baseurl="" data-aggregationdimension="ID">
+            <div class="facetPaneShadow">
+                <div class="facetPane">
+                    <div class="searchboxframe">
+                        <div data-sap-widget="searchbox" data-title="Intranet" data-workareatitle="searchandanalytics"></div>
+                    </div>
+                    <div class="facetColumn" data-children-drag-handle="header">
+                        <div data-sap-widget="workareaitem"
+                            class="sap-workareaitem-placeholder" data-title="Drop here"
+                            data-target-position="0"></div>
+                        <div data-sap-widget="workareaitem"
+                            class="sap-workareaitem-placeholder" data-title="Drop here"
+                            data-target-position="1"></div>
+                        <div data-sap-widget="workareaitem"
+                            class="sap-workareaitem-placeholder" data-title="Drop here"
+                            data-target-position="2"></div>
+                    </div>
+                    <!-- end of the facetColumn" -->
+                </div>
+                <!--  end of facetPane -->
+            </div>
+            <!--  end of facetPaneShadow -->
+
+            <div class="contentPaneShadow">
+                <div class="contentPane" data-children-drag-handle="header">
+                    <!-- The following div is a placeholder that will be replaced on the first time a workarea-centerable will be centered. -->
+                    <div data-sap-widget="workareaitem"
+                        class="sap-workareaitem-placeholder" data-iscenter="true"
+                        data-title="Drop here" data-target-position="3"></div>
+                </div>
+            </div>
+
+            <div data-sap-widget="facetrepository"
+                data-children-drag-handle="body">
+
+                <div data-sap-widget="workareaitem" data-title="Extractors"
+                    data-source-position="0">
+                    <div data-sap-widget="switchbox" data-activeindex="1">
+                        <!-- First switchbox item -->
+                        <a href="javascript:void(0)" class="iconBarChartHorizontal">Bar
+                            Chart</a>
+                        <div data-sap-widget="chart" data-toplarge="25"
+                            data-title="CURRENCY-BAR" data-dimension="CONTENT_SOURCE"
+                            data-charttype="bar" data-color="#F0AB00"></div>
+                        <!-- Second switchbox item -->
+                        <a href="javascript:void(0)" class="iconPieChart">Pie Chart</a>
+                        <div data-sap-widget="chart" data-title="CURRENCY-PIE"
+                            data-dimension="CONTENT_SOURCE" data-charttype="pie"
+                            data-color="#F0AB00"></div>
+                    </div>
+                </div>
+
+                <div data-sap-widget="workareaitem" data-title="Sentiments"
+                    data-source-position="1">
+                    <div data-sap-widget="switchbox" data-activeindex="0">
+                        <!-- First switchbox item -->
+                        <a href="javascript:void(0)" class="iconBarChartHorizontal">Bar
+                            Chart</a>
+                        <div data-sap-widget="chart" data-toplarge="25"
+                            data-title="EDITOR-BAR" data-dimension="SENTIMENT"
+                            data-charttype="bar" data-color="#F0AB00"></div>
+                        <!-- Second switchbox item -->
+                        <a href="javascript:void(0)" class="iconPieChart">Pie Chart</a>
+                        <div data-sap-widget="chart" data-title="EDITOR-PIE"
+                            data-dimension="SENTIMENT" data-charttype="pie"
+                            data-color="#F0AB00"></div>
+
+                    </div>
+                </div>
+
+                <div data-sap-widget="workareaitem" data-title="Created at"
+                    data-source-position="2">
+                    <div data-sap-widget="switchbox" data-activeindex="0">
+                        <!-- First switchbox item -->
+                        <a href="javascript:void(0)" class="iconBarChartHorizontal">Bar
+                            Chart</a>
+                        <div data-sap-widget="chart" data-toplarge="25"
+                            data-title="CREATED-AT" data-dimension="TA_CREATED_AT"
+                            data-charttype="bar" data-color="#F0AB00"></div>
+                        <!-- Second switchbox item -->
+                        <a href="javascript:void(0)" class="iconPieChart">Pie Chart</a>
+                        <div data-sap-widget="chart" data-title="CURRENCY-PIE"
+                            data-dimension="TA_CREATED_AT" data-charttype="pie"
+                            data-color="#F0AB00"></div>
+                    </div>
+                </div>
+                
+                <div data-sap-widget="workareaitem" data-title="Results" data-source-position="3"> 
+                     <div data-sap-widget="inaresultlist" data-maxresultslarge="10"
+                        data-maxresultssmall="15"
+                        data-responseattributes="ID,TA_TYPE,TA_RULE,TA_COUNTER,TA_CREATED_AT,TOPIC,SOURCE,TEXT,TWITTED_BY"
+                        data-detailwidth="650" data-detailheight="380"
+                        data-highlightterms="true"
+                        data-resulttemplate="templates/result.html"
+                        data-resulttemplate-css="templates/result.css"
+                        data-resulttemplate-small="templates/result_small.html"
+                        data-resulttemplate-small-css="templates/result_small.css"
+                        data-resulttemplate-detail="templates/result_detail.html"
+                        data-resulttemplate-detail-css="templates/result_detail.css"
+                        data-opendetailevent="click" data-orderby="TA_TYPE">
+                    </div> 
+                </div>
+
+            </div>
+            <!-- end of facetrepository div -->
+        </div>
+        <!-- end of workarea div -->
+        <div class="clear"></div>
+
+    </div>
+    <!-- end of background div -->
+    <script src="/sap/bc/ina/uitoolkit/lib/d3/d3.v2.min.js"></script>
+    <script src="/sap/bc/ina/uitoolkit/lib/jquery-ui.min.js"></script>
+    <script src="/sap/bc/ina/uitoolkit/lib/tempo/tempo.min.js"></script>
+    <!-- owned libraries -->
+    <script src="/sap/bc/ina/uitoolkit/config.js"></script>
+    <script src="/sap/bc/ina/uitoolkit/js/base/dynamicloader.js"></script>
+</body>
+</html>

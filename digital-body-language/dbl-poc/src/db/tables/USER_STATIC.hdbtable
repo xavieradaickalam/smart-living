@@ -1,0 +1,27 @@
+table.schemaName = "${dbl.schema}";
+table.tableType = COLUMNSTORE;
+table.columns = [
+    {name = "ID"; sqlType = NVARCHAR; nullable = false; length = 32;},
+    {name = "NAME"; sqlType = NVARCHAR; nullable = false; length = 64;},
+    {name = "FIRST_NAME"; sqlType = NVARCHAR; nullable = true; length =100;},
+    {name = "LAST_NAME"; sqlType = NVARCHAR; nullable = true; length =100;},
+    {name = "MIDDLE_NAME"; sqlType = NVARCHAR; nullable = true; length =100;},
+    {name = "NICK_NAME"; sqlType = NVARCHAR; nullable = true; length =100;},
+    {name = "PROFILE"; sqlType = NVARCHAR; nullable = true; length =256;},
+    {name = "PICTURE"; sqlType = NVARCHAR; nullable = true; length =256;},
+    {name = "WEBSITE"; sqlType = NVARCHAR; nullable = true; length =256;},
+    {name = "EMAIL"; sqlType = NVARCHAR; nullable = true; length =100;},
+    {name = "EMAIL_VERIFIED"; sqlType = TINYINT; nullable = true;},
+    {name = "GENDER"; sqlType = NVARCHAR; nullable = true; length =32;},
+    {name = "DATE_OF_BIRTH"; sqlType = DATE; nullable = true;},
+    {name = "ZONEINFO"; sqlType = NVARCHAR; nullable = true; length =100;},
+    {name = "LOCALE"; sqlType = NVARCHAR; nullable = true; length =5;},
+    {name = "PHONE_NUMBER"; sqlType = NVARCHAR; nullable = true; length =256;},
+    {name = "STREET_ADDRESS"; sqlType = NVARCHAR; nullable = true; length =100;},
+    {name = "CITY"; sqlType = NVARCHAR; nullable = true; length =100;},
+    {name = "REGION"; sqlType = NVARCHAR; nullable = true; length =100;},
+    {name = "COUNTRY"; sqlType = NVARCHAR; nullable = true; length =100;},
+    {name = "POSTAL_CODE"; sqlType = NVARCHAR; nullable = true; length =100;},
+    {name = "UPDATED_TIME"; sqlType = TIMESTAMP; nullable = false;}
+];
+table.primaryKey.pkcolumns = ["ID","NAME"];

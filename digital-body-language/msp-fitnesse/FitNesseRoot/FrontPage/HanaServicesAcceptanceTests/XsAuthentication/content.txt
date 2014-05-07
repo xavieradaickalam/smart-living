@@ -1,0 +1,17 @@
+!path fitnesse-standalone.jar
+ 
+!path msp-fixtures-1.0-SNAPSHOT.jar
+
+!path lib/**.jar
+
+!define TEST_SYSTEM {slim} 
+
+
+|Import                               |
+|com.sap.msp.fixtures.rest      |
+|com.sap.msp.fixtures.utils.hana|
+|com.sap.msp.fixtures.utils     |
+
+|script|Authentication XS;|dubl60244901a.dhcp.dub.sap.corp|8003|
+|login;|SYSTEM|Manager03|
+

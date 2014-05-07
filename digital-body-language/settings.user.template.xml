@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+	<interactiveMode>true</interactiveMode>
+	<profiles>
+	    <profile>
+            <id>user</id> 
+            <activation>
+      			<activeByDefault>false</activeByDefault>
+    		</activation>          
+            <properties>
+	            <skipTests>false</skipTests>
+				<user.hana.instance>XX</user.hana.instance>
+				<user.hana.server>XXXXXXX.dhcp.dub.sap.corp</user.hana.server>
+                <user.hana.port>30${user.hana.instance}15</user.hana.port> 
+				<hana.system.username>XXXXXX</hana.system.username>
+				<hana.system.password>XXXXXX</hana.system.password>               
+                <msp.schema>XXXXXXXX</msp.schema>
+            </properties>
+         </profile>
+    </profiles>   
+</settings>

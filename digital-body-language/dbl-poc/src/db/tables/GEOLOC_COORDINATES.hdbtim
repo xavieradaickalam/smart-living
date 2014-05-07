@@ -1,0 +1,2 @@
+listCsvFile csvFiles;
+import csvFiles "${dbl.schema}" "${regi.rootPackage}.db.tables::GEOLOC_COORDINATES";

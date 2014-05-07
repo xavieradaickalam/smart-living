@@ -1,0 +1,12 @@
+table.schemaName = "${dbl.schema}";
+table.tableType = COLUMNSTORE;
+table.columns = [
+    {name = "ID"; sqlType = BIGINT; nullable = false;},
+    {name = "TOPIC"; sqlType = NVARCHAR; nullable = true; length = 500;},
+    {name = "TWITTED_TIMESTAMP"; sqlType = NVARCHAR; nullable = true;  length = 500;},
+    {name = "TWITTED_BY"; sqlType = NVARCHAR;  nullable = true; length = 500;},
+    {name = "LANG"; sqlType = NVARCHAR; nullable = true; length = 500;},
+    {name = "SOURCE"; sqlType = NVARCHAR; nullable = true; length = 500;},
+    {name = "TEXT"; sqlType = NVARCHAR; nullable = true; length = 500;}
+];
+table.primaryKey.pkcolumns = ["ID"];

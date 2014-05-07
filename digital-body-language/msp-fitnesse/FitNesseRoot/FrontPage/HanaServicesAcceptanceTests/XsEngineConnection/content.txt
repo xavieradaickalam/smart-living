@@ -1,0 +1,15 @@
+!include -c .FrontPage.HanaServicesEnvironmentSetUp
+
+
+|Import                     |
+|com.sap.msp.fixtures.common|
+|com.sap.msp.fixtures.rest |
+
+!|script    |base fixture        |
+|set systemUnderTest    |${SYSTEM_UNDER_TEST}|
+|set hanaInstanceNumber |${HANA_INSTANCE_NUMBER}|
+|set hanaUsername |${HANA_USERNAME}|
+|set hanaPassword |${HANA_PASSWORD}|
+|login  |
+|logout |
+

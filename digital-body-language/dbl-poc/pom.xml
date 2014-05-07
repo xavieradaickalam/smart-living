@@ -1,0 +1,281 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+		
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.sap.hs.dbl</groupId>
+	<artifactId>dbl-poc</artifactId>
+	<packaging>jar</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>digital-body-language :: dbl-poc</name>
+	
+	<parent>
+		<groupId>com.sap.hs.dbl</groupId>
+		<artifactId>dbl-parent</artifactId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	
+	<properties>
+	    <maven.clean.plugin.version>2.4.1</maven.clean.plugin.version>
+	    <regi.deliveryUnitVendor>sap.com</regi.deliveryUnitVendor>
+        <regi.deliveryUnit>DBL_POC</regi.deliveryUnit>
+        <regi.rootPackage>dbl</regi.rootPackage>
+        <regi.rootFolder>dbl</regi.rootFolder>
+        <regi.keystoreName>KEYDBL</regi.keystoreName>
+        <regi.workspaceWorkingDirectory>${basedir}</regi.workspaceWorkingDirectory>
+		<regi.workspaceFolderName>.regi</regi.workspaceFolderName>
+		<regi.rootPackageFolder>${basedir}/${regi.workspaceFolderName}/${regi.rootFolder}</regi.rootPackageFolder>
+		<regi.maven.plugin.version>1.1.2</regi.maven.plugin.version>
+		<newdb.artifact.id>com.sap.db.ngdbc</newdb.artifact.id>
+        <newdb.version>1.50.00.352689</newdb.version>
+        <jdbc.driver.name>com.sap.db.jdbc.Driver</jdbc.driver.name>
+        <jdbc.url>jdbc:sap://${user.hana.server}:3${user.hana.instance}15</jdbc.url>
+	</properties>
+	
+	<build>
+	<resources>
+		<resource>
+			<directory>src</directory>
+			<targetPath>${regi.rootPackageFolder}</targetPath>
+			<filtering>true</filtering>
+			<includes>
+				<include>**/*.schema</include>
+				<include>**/*.hdbtable</include>
+				<include>**/*.sequence</include>
+				<!-- <include>**/*.attributeview</include> -->
+				<include>**/*.xsjslib</include>
+				<include>**/*.xsjs</include>
+				<include>**/*.xsodata</include>
+				<include>**/.xsaccess</include>
+				<include>**/.xsapp</include>
+				<include>**/*.csv</include>
+				<include>**/*.hdbtid</include>
+				<include>**/*.hdbtim</include>
+			</includes>
+		</resource>
+		<resource>
+			<directory>src/ui</directory>
+			<targetPath>${regi.rootPackageFolder}/ui</targetPath>
+			<filtering>false</filtering>
+		</resource>
+		<resource>
+			<directory>src/newui</directory>
+			<targetPath>${regi.rootPackageFolder}/newui</targetPath>
+			<filtering>false</filtering>
+		</resource>
+		<resource>
+			<directory>src</directory>
+			<filtering>true</filtering>
+			<includes>
+				<include>**/*.sql</include>
+			</includes>
+		</resource>
+	</resources>
+	<plugins>
+		<plugin>
+			<artifactId>maven-clean-plugin</artifactId>
+			<version>${maven.clean.plugin.version}</version>
+			<configuration>
+				<phase>clean</phase>
+				<id>Clean up ${regi.workspaceFolderName}/ folder</id>
+				<followSymLinks>false</followSymLinks>
+				<filesets>
+					<fileset>
+						<includes>
+							<include>**</include>
+						</includes>
+						<directory>${basedir}/${regi.workspaceFolderName}/</directory>
+					</fileset>
+				</filesets>
+			</configuration>
+		</plugin>
+		<plugin>
+			<groupId>com.sap.epm.xs.tools</groupId>
+			<artifactId>regi-maven-plugin</artifactId>
+			<executions>
+				<execution>
+					<phase>clean</phase>
+					<id>Initialise Workspace and Keystore</id>
+					<goals>
+						<goal>init-workspace</goal>
+					</goals>
+					<configuration>
+						<hdbuserstoreKey>${regi.keystoreName}</hdbuserstoreKey>
+						<hdbuserstoreUser>${hana.system.username}</hdbuserstoreUser>
+						<hdbuserstorePassword>${hana.system.password}</hdbuserstorePassword>
+						<hdbuserstoreHost>${user.hana.server}</hdbuserstoreHost>
+						<hdbuserstorePort>${user.hana.port}</hdbuserstorePort>
+						<workspaceWorkingDirectory>${regi.workspaceWorkingDirectory}</workspaceWorkingDirectory>
+						<workspaceFolderName>${regi.workspaceFolderName}</workspaceFolderName>
+					</configuration>
+				</execution>
+				<execution>
+					<phase>clean</phase>
+					<id>Revert any changes</id>
+					<goals>
+						<goal>clean-workspace</goal>
+					</goals>
+					<configuration>
+						<hdbuserstoreKey>${regi.keystoreName}</hdbuserstoreKey>
+						<packageName>${regi.rootPackage}</packageName>
+					</configuration>
+				</execution>
+				<execution>
+					<!-- Unassign Main Packages -->
+					<phase>clean</phase>
+					<id>Unassign Delivery Unit ${regi.deliveryUnit}</id>
+					<goals>
+						<goal>unassign-package</goal>
+					</goals>
+					<configuration>
+						<hdbuserstoreKey>${regi.keystoreName}</hdbuserstoreKey>
+						<deliveryUnit>${regi.deliveryUnit}</deliveryUnit>
+						<packageName>${regi.rootPackage}</packageName>
+						<subPackages>true</subPackages>
+					</configuration>
+				</execution>
+				<execution>     <!-- Delete Main DU -->
+					<phase>clean</phase>
+					<id>Delete Delivery Unit: ${regi.deliveryUnit}</id>
+					<goals>
+						<goal>delete-delivery-unit</goal>
+					</goals>
+					<configuration>
+						<workspaceWorkingDirectory>${regi.workspaceWorkingDirectory}</workspaceWorkingDirectory>
+						<workspaceFolderName>${regi.workspaceFolderName}</workspaceFolderName>
+						<hdbuserstoreKey>${regi.keystoreName}</hdbuserstoreKey>
+						<deliveryUnit>${regi.deliveryUnit}</deliveryUnit>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
+		<plugin>
+			<artifactId>maven-antrun-plugin</artifactId>
+			<executions>
+				<execution>
+					<id>move-dbl-schema</id>
+					<phase>process-resources</phase>
+					<configuration>
+						<target>
+							<copy file="${regi.rootPackageFolder}/db/schema/dbl.schema"
+								tofile="${regi.rootPackageFolder}/db/schema/${dbl.schema}.schema" />
+						</target>
+					</configuration>
+					<goals>
+						<goal>run</goal>
+					</goals>
+				</execution>
+				<execution>
+					<id>delete-dbl-schema</id>
+					<phase>process-resources</phase>
+					<configuration>
+						<target>
+							<delete file="${regi.rootPackageFolder}/db/schema/dbl.schema" />
+						</target>
+					</configuration>
+					<goals>
+						<goal>run</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+		<plugin>
+			<groupId>com.sap.epm.xs.tools</groupId>
+			<artifactId>regi-maven-plugin</artifactId>
+			<version>${regi.maven.plugin.version}</version>
+			<inherited>false</inherited>
+			<executions>
+				<!-- <execution> <id>Creating Package</id> <goals> <goal>create-package</goal> 
+					</goals> <phase>compile</phase> <configuration> <hdbuserstoreKey>${regi.keystoreName}</hdbuserstoreKey> 
+					<packageName>${regi.rootPackage}</packageName> </configuration> </execution> -->
+				<execution>
+					<id>Commit Package</id>
+					<goals>
+						<goal>commit-package</goal>
+					</goals>
+					<phase>compile</phase>
+					<configuration>
+						<hdbuserstoreKey>${regi.keystoreName}</hdbuserstoreKey>
+						<packageName>${regi.rootPackage}</packageName>
+					</configuration>
+				</execution>
+				<execution>
+					<phase>compile</phase>
+					<id>create-delivery-unit</id>
+					<goals>
+						<goal>create-delivery-unit</goal>
+					</goals>
+					<configuration>
+						<hdbuserstoreKey>${regi.keystoreName}</hdbuserstoreKey>
+						<deliveryUnit>${regi.deliveryUnit}</deliveryUnit>
+						<deliveryUnitVendor>${regi.deliveryUnitVendor}</deliveryUnitVendor>
+					</configuration>
+				</execution>
+				<execution>
+					<!-- Assign the main package to deliver unit -->
+					<phase>compile</phase>
+					<id>Assign Delivery Unit: ${regi.rootPackage}</id>
+					<goals>
+						<goal>assign-package</goal>
+					</goals>
+					<configuration>
+						<hdbuserstoreKey>${regi.keystoreName}</hdbuserstoreKey>
+						<deliveryUnit>${regi.deliveryUnit}</deliveryUnit>
+						<packageName>${regi.rootPackage}</packageName>
+						<subPackages>true</subPackages>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
+		
+		<!-- Running the SQL -->
+		<plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>sql-maven-plugin</artifactId>
+			<version>1.5</version>
+			<dependencies>
+				<dependency>
+					<groupId>com.sap.db.hdb</groupId>
+					<artifactId>${newdb.artifact.id}</artifactId>
+					<version>${newdb.version}</version>
+				</dependency>
+			</dependencies>
+			<configuration>
+				<skip>${skip.sql}</skip>
+				<forceMojoExecution>true</forceMojoExecution>
+				<driver>${jdbc.driver.name}</driver>
+				<url>${jdbc.url}</url>
+				<username>${hana.system.username}</username>
+				<password>${hana.system.password}</password>
+				<outputFile>${project.build.directory}/sql.log</outputFile>
+				<skipOnConnectionError>false</skipOnConnectionError>
+				<autocommit>true</autocommit>
+				<enableFiltering>false</enableFiltering>
+				<delimiter>;</delimiter>
+				<delimiterType>row</delimiterType>
+				<escapeProcessing>true</escapeProcessing>
+				<keepFormat>true</keepFormat>
+				<printResultSet>false</printResultSet>
+			</configuration>
+			<executions>
+				<execution>
+					<id>execute-post-activate-sql</id>
+					<phase>compile</phase>
+					<goals>
+						<goal>execute</goal>
+					</goals>
+					<configuration>
+						<onError>continue</onError>
+						<srcFiles>
+							<srcFile>${project.build.directory}/classes/db/sql/dbl-clean.sql</srcFile>
+							<!-- 
+							<srcFile>${project.build.directory}/classes/db/sql/dbl-tables.sql</srcFile>							 
+							<srcFile>${project.build.directory}/classes/db/sql/dbl-data.sql</srcFile>
+							-->
+						</srcFiles>
+					</configuration>
+				</execution>
+			</executions>
+		</plugin>
+	</plugins>
+	</build>
+</project>

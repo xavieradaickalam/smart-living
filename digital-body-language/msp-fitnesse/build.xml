@@ -1,0 +1,39 @@
+<project name="com.sap" basedir=".">
+    <property name="fitnesse.jar" value="${basedir}/fitnesse-standalone.jar"/>
+
+    <path id="testautomation.classpath">
+        <file file="${fitnesse.jar}"/>
+    	<file file="lib/*.jar"/>
+    </path>
+
+    <property name="fitnesse.root" value="FitNesseRoot"/>
+    <property name="fitnesse.port" value="8085"/>
+	<property name="fitnesse.logs" value="${basedir}/logs"/>	
+	<property name="log4j.configuration" value="${basedir}/log4j.xml"/>
+
+    <target name="start-fitnesse" description="spawns fitnesse server">
+        <echo message="Starting FitNesse on port ${fitnesse.port}"/>
+        <java classname="fitnesseMain.FitNesseMain"
+              fork="true"
+              spawn="true"
+              classpathref="testautomation.classpath">
+            <arg line="-p ${fitnesse.port} -r ${fitnesse.root} -l ${fitnesse.logs} -a passwords.txt"/>
+            <sysproperty key="COMMAND_PATTERN" value="java -Xms256M -Xmx1024M -Dwebdriver.ie.driver=${basedir}\webdrivers\IEDriverServer.exe -cp %p %m"/>
+        </java>
+    </target>
+
+    <target name="stop-fitnesse">
+        <java classname="fitnesse.Shutdown"
+              fork="true"
+              classpathref="testautomation.classpath">
+            <arg value="-h"/>
+            <arg value="localhost"/>
+            <arg value="-p"/>
+            <arg value="${fitnesse.port}"/>
+			<arg value="-c"/>		
+			<arg value="admin"/>
+			<arg value="fitnesse"/>
+        </java>
+    </target>
+
+</project>

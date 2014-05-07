@@ -1,0 +1,12 @@
+{
+    "schema": "${dbl.schema}",
+    "increment_by": "1",
+    "start_with": "1",
+    "maxvalue": "10000000",
+    "nomaxvalue": "false",
+    "minvalue": "",
+    "nominvalue": "true",
+    "cycles": "false",
+    "reset_by": "SELECT IFNULL(MAX(\"ID\"), 0) + 1 FROM \"${dbl.schema}\".\"${regi.rootPackage}.db.tables::TWITTER_FEED\"",
+    "dependsOnTable": "${regi.rootPackage}.db.tables::TWITTER_FEED"  
+}

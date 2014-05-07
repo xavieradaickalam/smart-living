@@ -1,0 +1,62 @@
+.buffer_detail {
+	padding:3px; 
+	padding-left:10px; 
+	border:5px;
+	background-color:#eeeeee;
+	font-size:160%;
+	border-radius:6px;
+    height: 100%;
+    text-align: center;
+}
+
+
+.buffer_detail_left {
+    text-align: left;
+}
+
+.buffer_detail_right {
+    text-align: right;
+}
+
+.buffer_detail table {
+    width: 100%;
+    height: 100%;
+}
+
+.buffer_detail_title {
+    margin:auto;
+    color:#0000FF;
+    font-size:120%;
+//    font-weight:bold;
+ //   white-space:nowrap;
+    margin-bottom:5px;
+}
+
+.buffer_detail_body {
+    margin-left:7px;
+}
+
+.buffer_detail_body tr {
+    line-height:100%;
+}
+
+.buffer_detail_body td {
+    padding-right:10px; 
+}
+
+.buffer_detail_img{
+    padding:3px;
+    background-color:#ffffff;
+    border:1px solid #aaaaaa;
+    border-radius:9px;
+}
+
+.attributeName_detail{
+    color:#999999;
+    margin-left:10px;
+}
+
+.attributeValue_detail{
+    color:#000000;
+    margin-left:10px;
+}

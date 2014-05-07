@@ -1,0 +1,8 @@
+table.schemaName = "${dbl.schema}";
+table.tableType = COLUMNSTORE;
+table.columns = [
+    {name = "POI_ID"; sqlType = NVARCHAR;  nullable = false; length = 32;},
+    {name = "NAME"; sqlType = NVARCHAR;  nullable = true;length = 5000;},
+    {name = "TYPE"; sqlType = NVARCHAR; nullable = true;length = 5000;}
+];
+table.primaryKey.pkcolumns = ["POI_ID"];

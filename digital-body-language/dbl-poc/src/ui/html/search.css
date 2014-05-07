@@ -1,0 +1,145 @@
+
+html, body, div, span, a {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    text-decoration: inherit;
+    vertical-align: baseline;
+}
+
+body {
+    background-color: #f0f0f0;
+    color:#000000;
+    font-family: Arial,sans-serif;
+    font-size: 12px;
+    height:100%;
+    /* wei's cahnge */
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+.background {
+    min-width: 1280px; /* 480+720+2*40 px */
+    height:100%;
+}
+
+.sap-workarea {
+    padding-left:40px;
+    height:100%;
+    
+}
+
+
+.facetPaneShadow {
+    background-color:red;
+    background: url(/sap/bc/ina/uitoolkit/js/widgets/workarea/img/Canvas_shadow_left.png);
+    background-repeat: no-repeat;
+    background-position: top left;
+    margin-top:0;
+    float:left;
+}
+
+
+
+.facetPane,.contentPane {
+    padding:20px;
+    border-top: 1px solid #ffffff;
+    background-color:#f0f0f0;
+}
+
+.facetPane {
+    margin-left:4px;
+    min-width: 210px;
+/*     border:1px solid blue; */
+}
+
+/* div#facetPane > * { */
+/*     display:none; */
+/*     } */
+
+
+.searchboxframe {
+/*     padding:10px; */
+    margin-right:18px;
+    margin-bottom: 6px;
+    border: 1px solid #dedede;
+    background-color: #f7f7f7;
+    
+}
+
+.contentPaneShadow {
+    overflow:hidden; /* see http://stackoverflow.com/questions/1260122/expand-div-to-take-remaining-width */
+    margin-right: 15px;
+    margin-top:-20px;
+    background: url(/sap/bc/ina/uitoolkit/js/widgets/workarea/img/Canvas_shadow_right_2.png);
+    background-repeat: no-repeat;
+    background-position: top right;
+    height:100%;
+/*     border: 1px dashed red; */
+}
+    
+.contentPane {
+    padding-left:0;
+    margin-right:25px; /* +25px for #contentPaneShadow background img width */
+    min-width:720px;
+    height:100%;
+}
+
+/*
+div.facetColumnContainer {
+    overflow-y:scroll; 
+    height:810px;
+}
+*/
+
+.facetColumn, .lastFacetColumn {
+    float:left;
+    margin-top: 20px;
+    margin-right: 20px;
+    width:250px;
+}
+
+.facetColumn > div, .lastFacetColumn > div {
+    margin-bottom: 20px;
+}
+
+
+/**************/
+/*** Others ***/
+/**************/
+
+.clear{
+  clear:both;
+  height:0;
+  width:100%;
+}
+ 
+ /* this is the cursor distance to left edge of input box*/ 
+.sap-searchbox-input{
+  margin-left:5px;
+}
+  
+/**********************************/
+/*** Individual Databox Content ***/
+/**********************************/
+
+.sap-workareaitem-centered .sap-workareaitem-header {
+    margin-left:0;
+}
+
+.sap-workareaitem-centered .sap-workareaitem-content {
+    height:760px;
+}
+
+.sap-workareaitem-uncentered .sap-resultlist {
+    width: 240px;
+    height: 175px;
+}
+
+.sap-workareaitem-uncentered .sap-chart {
+    width: 229px;
+    height: 175px;
+}   
+

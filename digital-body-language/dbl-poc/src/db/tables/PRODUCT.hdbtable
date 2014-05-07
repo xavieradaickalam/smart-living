@@ -1,0 +1,7 @@
+table.schemaName = "${dbl.schema}";
+table.tableType = COLUMNSTORE;
+table.columns = [
+    {name = "PRODUCT_NAME"; sqlType = NVARCHAR;  nullable = false; length = 500;},
+    {name = "FILENAME"; sqlType = NVARCHAR;  nullable = false; length = 500;},
+    {name = "PRICE"; sqlType = NVARCHAR; nullable = false; length = 100;}
+];
